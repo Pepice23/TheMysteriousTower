@@ -1,7 +1,7 @@
    <?xml version="1.0" encoding="UTF-8"?>
    <item>
-       <version>0.0.1.1</version>
-       <url>https://github.com/Pepice23/TheMysteriousTower/releases/download/v0.0.1.1/TheMysteriousTower.zip</url>
-       <changelog>https://github.com/Pepice23/TheMysteriousTower/releases/tag/v0.0.1.1</changelog>
+       <version>0.0.0.2</version>
+       <url>https://github.com/Pepice23/TheMysteriousTower/releases/download/v0.0.0.2/TheMysteriousTower.zip</url>
+       <changelog>https://github.com/Pepice23/TheMysteriousTower/releases/tag/v0.0.0.2</changelog>
        <mandatory>false</mandatory>
    </item>
