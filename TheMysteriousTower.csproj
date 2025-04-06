@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
     <PropertyGroup>
@@ -14,6 +14,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Autoupdater.NET.Official" Version="1.9.2" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebView.WindowsForms" Version="9.*-*" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.*-*" />
     </ItemGroup>
