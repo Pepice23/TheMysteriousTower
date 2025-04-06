@@ -23,15 +23,13 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Update="wwwroot\css\app.css">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Update="wwwroot\css\bootstrap\bootstrap.min.css">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Update="wwwroot\index.html">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        <Content Update="wwwroot\**">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
     </ItemGroup>
+
+     <Target Name="Tailwind" BeforeTargets="Compile">
+    <Exec Command="npx tailwindcss -i ./Styles/tailwind.css -o ./wwwroot/styles.css" />
+  </Target>
 
 </Project>

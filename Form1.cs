@@ -13,7 +13,7 @@ public partial class Form1 : Form
             Dock = DockStyle.Fill,
             HostPage = "wwwroot/index.html",
             Services = Startup.Services!,
-            StartPath = "/counter"
+            StartPath = "/"
         };
 
         blazor.RootComponents.Add<Main>("#app");
