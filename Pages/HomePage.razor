@@ -1,1 +1,19 @@
-<h1>Homepage</h1>
+@inject GameService GameService
+@implements IDisposable
+
+<StageView />
+<CombatView />
+
+<div>
+    <button @onclick="GameService.IncrementFloor">Increment Floor</button>
+</div>
+
+@code {
+    protected override void OnInitialized(){
+        GameService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose(){
+        GameService.OnChange -= StateHasChanged;
+    }
+}
