@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TheMysteriousTower.Services;
 
 namespace TheMysteriousTower;
 
@@ -20,6 +21,7 @@ public static class Startup
         services.AddWindowsFormsBlazorWebView();
         // How to add a singleton service:
         //services.AddSingleton<WeatherForecastService>();
+        services.AddSingleton<GameService>();
 
 #if DEBUG
         services.AddBlazorWebViewDeveloperTools();
