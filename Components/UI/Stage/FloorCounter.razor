@@ -5,17 +5,12 @@
 <div class="bg-black/40 rounded-2xl p-3 h-[200px]">
   <!-- Fantasy-styled border container with gradient and glow effect -->
   <div
-    class="flex flex-col border-2 border-amber-700/50 rounded-lg p-3 bg-gradient-to-b from-black/50 to-zinc-900/60 shadow-[0_0_20px_rgba(166,124,0,0.3)] h-full"
-  >
+    class="flex flex-col border-2 border-amber-700/50 rounded-lg p-3 bg-gradient-to-b from-black/50 to-zinc-900/60 shadow-[0_0_20px_rgba(166,124,0,0.3)] h-full">
     <!-- Floor progress display section -->
     <div class="relative p-2">
       <!-- Section header with tower observation icon -->
-      <h3
-        class="text-lg font-cinzel text-amber-400 tracking-wider text-center mb-2"
-      >
-        <i
-          class="fas fa-tower-observation text-xl mr-2 drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]"
-        ></i>
+      <h3 class="text-lg font-cinzel text-amber-400 tracking-wider text-center mb-2">
+        <i class="fas fa-tower-observation text-xl mr-2 drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]"></i>
         Floor Progress
       </h3>
 
@@ -23,25 +18,18 @@
       <div class="flex flex-col items-center space-y-2">
         <!-- Current floor number with glowing effect -->
         <div class="py-2">
-          <span
-            class="text-4xl font-bold font-cinzel text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]"
-          >
+          <span class="text-4xl font-bold font-cinzel text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
             @GameService.FloorNumber
           </span>
         </div>
 
         <!-- Decorative floor label with gradient background -->
-        <div
-          class="bg-gradient-to-r from-amber-700 to-amber-500 rounded-full py-1 px-4"
-        >
-          <span
-            class="text-sm uppercase tracking-[3px] text-amber-100 font-semibold"
-            >Floor</span
+        <div class="bg-gradient-to-r from-amber-700 to-amber-500 rounded-full py-1 px-4">
+          <span class="text-sm uppercase tracking-[3px] text-amber-100 font-semibold">Floor</span </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
 @code {
   protected override void OnInitialized()
@@ -53,4 +41,4 @@
   {
     GameService.OnChange -= StateHasChanged;
   }
-}
+  }

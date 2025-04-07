@@ -1,6 +1,7 @@
 namespace TheMysteriousTower.Helpers;
 
-public static class ImageUtility{
+public static class ImageUtility
+{
 
     /// <summary>
     /// Gets a random image path from the specified directory

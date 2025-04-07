@@ -1,0 +1,32 @@
+<div class="bg-black/40 rounded-2xl p-3 h-[200px]">
+  <!-- Main container with fantasy-themed styling -->
+  <div
+    class="flex flex-col border-2 border-amber-700/50 rounded-lg p-3 bg-gradient-to-b from-black/50 to-zinc-900/60 shadow-[0_0_20px_rgba(166,124,0,0.3)] h-full">
+    <!-- Enemy progress display section -->
+    <div class="relative p-2">
+      <!-- Section header with skull icon -->
+      <h3 class="text-lg font-cinzel text-amber-400 tracking-wider text-center mb-2">
+        <i class="fas fa-skull text-xl mr-2 drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]"></i>
+        Enemy Progress
+      </h3>
+
+      <!-- Enemy counter display -->
+      <div class="flex flex-col items-center space-y-2">
+        <!-- Current/Max enemy counter with fantasy-styled numbers -->
+        <div class="flex items-center justify-center py-2">
+          <span class="text-4xl font-bold font-cinzel text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
+            {gameStore.currentEnemy}
+          </span>
+          <span class="text-3xl text-amber-400 mx-3">/</span>
+          <span class="text-4xl font-bold font-cinzel text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
+            {gameStore.maxEnemy}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+@code {
+  // Component logic here
+}

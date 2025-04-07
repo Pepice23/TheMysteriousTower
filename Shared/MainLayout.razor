@@ -3,11 +3,9 @@
 @inject GameService GameService
 @implements IDisposable
 
-<div
-  class="w-full min-h-screen bg-cover bg-center bg-no-repeat bg-fixed overflow-x-hidden"
-  style="background-image: url(@GameService.BackgroundImage);"
->
-<!-- Main layout container -->
+<div class="w-full min-h-screen bg-cover bg-center bg-no-repeat bg-fixed overflow-x-hidden"
+  style="background-image: url(@GameService.BackgroundImage);">
+  <!-- Main layout container -->
   <div class="flex flex-col min-h-screen w-full mx-auto px-4">
     <div class="w-full">
       <HomePage />
@@ -19,12 +17,13 @@
 </div>
 
 @code {
-    protected override void OnInitialized(){
-        GameService.OnChange += StateHasChanged;
-    }
+  protected override void OnInitialized()
+  {
+    GameService.OnChange += StateHasChanged;
+  }
 
-    public void Dispose(){
-        GameService.OnChange -= StateHasChanged;
-    }
+  public void Dispose()
+  {
+    GameService.OnChange -= StateHasChanged;
+  }
 }
-
