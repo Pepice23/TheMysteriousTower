@@ -1,3 +1,6 @@
+@inject GameService GameService
+@implements IDisposable
+
 <div class="bg-black/40 rounded-2xl p-3 h-[200px]">
   <!-- Main container with fantasy-themed styling -->
   <div
@@ -15,12 +18,16 @@
         <!-- Current/Max enemy counter with fantasy-styled numbers -->
         <div class="flex items-center justify-center py-2">
           <span class="text-4xl font-bold font-cinzel text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
-            {gameStore.currentEnemy}
+            @GameService.CurrentEnemy
           </span>
           <span class="text-3xl text-amber-400 mx-3">/</span>
           <span class="text-4xl font-bold font-cinzel text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
-            {gameStore.maxEnemy}
+            @GameService.MaxEnemy
           </span>
+        </div>
+        <!-- Decorative floor label with gradient background -->
+        <div class="bg-gradient-to-r from-amber-700 to-amber-500 rounded-full py-1 px-4">
+          <span class="text-sm uppercase tracking-[3px] text-amber-100 font-semibold">Enemy</span>
         </div>
       </div>
     </div>
@@ -28,5 +35,13 @@
 </div>
 
 @code {
-  // Component logic here
+  protected override void OnInitialized()
+  {
+    GameService.OnChange += StateHasChanged;
+  }
+
+  public void Dispose()
+  {
+    GameService.OnChange -= StateHasChanged;
+  }
 }
