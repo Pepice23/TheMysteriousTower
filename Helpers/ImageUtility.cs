@@ -1,5 +1,8 @@
 namespace TheMysteriousTower.Helpers;
 
+/// <summary>
+/// Utility class for image operations
+/// </summary>
 public static class ImageUtility
 {
 
