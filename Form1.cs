@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Components.WebView.WindowsForms;
-using AutoUpdaterDotNET;
 
 namespace TheMysteriousTower;
 
