@@ -4,6 +4,9 @@ on:
   release:
     types: [created]
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: windows-latest
@@ -39,12 +42,7 @@ jobs:
       - name: Zip the published files
         run: Compress-Archive -Path bin/Release/net9.0-windows7.0/win-x64/publish/* -DestinationPath TheMysteriousTower.zip
 
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update Release with Assets
+        uses: softprops/action-gh-release@v2
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./TheMysteriousTower.zip
-          asset_name: TheMysteriousTower.zip
-          asset_content_type: application/zip
+          files: TheMysteriousTower.zip
