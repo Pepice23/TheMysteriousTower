@@ -25,7 +25,7 @@ public partial class Form1 : Form
             blazor.RootComponents.Add<Main>("#app");
             Controls.Add(blazor);
         }
-        catch (System.DllNotFoundException)
+        catch (DllNotFoundException)
         {
             MessageBox.Show(
                 "Microsoft Edge WebView2 Runtime is not installed. The application will now open the download page.\n\n" +
