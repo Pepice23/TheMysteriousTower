@@ -1,0 +1,84 @@
+@inject IEnemyService EnemyService
+@inject IGameService GameService
+@implements IDisposable
+
+<!-- Main container with semi-transparent dark background and blur effect for depth -->
+<div class="bg-black/40 rounded-2xl p-5 backdrop-blur min-h-[120px] h-full">
+    <!-- Inner container with decorative border and gradient for visual appeal -->
+    <div
+        class="border-2 border-amber-700/50 rounded-lg p-5 bg-gradient-to-b from-black/50 to-zinc-900/60 shadow-[0_0_20px_rgba(166,124,0,0.3)]">
+        <!-- Responsive grid layout: single column on mobile, three columns on desktop -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Enemy portrait section - takes 1/3 width on desktop -->
+            <div class="md:col-span-1">
+                <div
+                    class="border-3 border-amber-700/50 rounded-lg overflow-hidden shadow-[0_0_20px_rgba(166,124,0,0.3)]">
+                    <img src=@EnemyService.EnemyImage alt="Enemy" class="w-full h-auto rounded-lg" />
+                </div>
+            </div>
+
+            <!-- Enemy stats section - takes 2/3 width on desktop -->
+            <div class="md:col-span-2">
+                <!-- Enemy level indicator -->
+                <div class="text-center mb-4">
+                    <h3 class="text-2xl font-cinzel text-amber-400 drop-shadow-[0_0_10px_rgba(251,191,36,0.6)] mb-2">
+                        Enemy
+                    </h3>
+                    <div
+                        class="inline-block bg-gradient-to-r from-amber-700 to-amber-400 text-white px-4 py-1 rounded-full font-bold drop-shadow-[1px_1px_2px_rgba(0,0,0,0.5)]">
+                        Level @GameService.FloorNumber
+                    </div>
+                </div>
+
+                <!-- HP Bar with current/max HP display -->
+                <div class="mb-4">
+                    <div class="flex justify-center">
+                        <span
+                            class="text-amber-400 text-lg uppercase tracking-[2px] font-medium drop-shadow-[0_0_10px_rgba(251,191,36,0.3)] mb-2 font-cinzel">HP</span>
+                    </div>
+                    <div class="h-[25px] bg-black/30 border-2 border-amber-700/50 rounded-2xl overflow-hidden relative">
+                        <div class="h-full bg-gradient-to-r from-red-500 to-red-400 rounded-md shadow-[0_0_10px_rgba(251,191,36,0.3)] transition-[width] duration-300 ease-in-out"
+                            style="width: {hpWidth}%">
+                            <span
+                                class="absolute inset-0 flex items-center justify-center text-white font-bold drop-shadow-[1px_1px_2px_rgba(0,0,0,0.5)]">
+                                @EnemyService.HP / @EnemyService.MaxHP HP
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Boss Timer - Only displayed when fighting the floor boss -->
+                @if (GameService.CurrentEnemy == GameService.MaxEnemy)
+                {
+                    <div class="bg-black/30 border-2 border-amber-700/50 rounded-lg p-4 text-center">
+                        <div class="text-amber-400 text-2xl mb-2">
+                            <i class="fas fa-hourglass-half drop-shadow-[0_0_10px_rgba(251,191,36,0.5)]"></i>
+                        </div>
+                        <div class="text-4xl font-bold text-white mb-1 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
+                            @EnemyService.CurrentBossTime
+                        </div>
+                        <div class="text-amber-400/80 text-sm uppercase tracking-wider">
+                            Seconds
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    private double hpWidth => 100 * EnemyService.HP / EnemyService.MaxHP;
+    protected override void OnInitialized()
+    {
+        EnemyService.OnChange += StateHasChanged;
+        GameService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        EnemyService.OnChange -= StateHasChanged;
+        GameService.OnChange -= StateHasChanged;
+    }
+}
