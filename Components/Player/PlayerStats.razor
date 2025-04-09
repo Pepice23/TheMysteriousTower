@@ -1,0 +1,92 @@
+@inject IPlayerService PlayerService
+@implements IDisposable
+
+<!-- Main container with glass-like effect -->
+<div class="bg-black/40 rounded-2xl p-5 backdrop-blur min-h-[120px] h-full">
+    <!-- Content wrapper with decorative border and gradient -->
+    <div
+        class="flex flex-col border-2 border-amber-700/50 rounded-lg p-5 bg-gradient-to-b from-black/50 to-zinc-900/60 shadow-[0_0_20px_rgba(166,124,0,0.3)]">
+        <!-- Grid layout for hero portrait and stats -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Hero portrait section -->
+            <div class="md:col-span-1">
+                <div
+                    class="border-3 border-amber-700/50 rounded-lg overflow-hidden shadow-[0_0_20px_rgba(166,124,0,0.3)]">
+                    <img src="/images/player/andaric.png" alt="Hero" class="w-full h-auto rounded-lg" />
+                </div>
+            </div>
+
+            <!-- Stats section with XP bar and stat grid -->
+            <div class="md:col-span-2">
+                <h3
+                    class="text-amber-400 font-cinzel mb-4 text-center text-2xl drop-shadow-[0_0_10px_rgba(251,191,36,0.6)]">
+                    <i class="fas fa-user-shield mr-2"></i> Andaric
+                </h3>
+
+                <!-- XP Bar -->
+                <div class="relative h-6 bg-black/30 rounded-full overflow-hidden mb-4">
+                    <div class="absolute h-full bg-gradient-to-r from-green-600 to-green-400"
+                        style="width: @progressWidth%"></div>
+                    @if (PlayerService.Level < 100)
+                    {
+                        <div class="absolute inset-0 flex items-center justify-center text-white text-sm">
+                            @PlayerService.Experience / @PlayerService.MaxExperience XP
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="absolute inset-0 flex items-center justify-center text-white text-sm">
+                            Max Level Reached
+                        </div>
+                    }
+                </div>
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-3 gap-4">
+                    <!-- Level Stat -->
+                    <div class="bg-black/20 p-3 rounded-lg text-center border border-amber-600/30">
+                        <i class="fas fa-star text-amber-400 text-xl mb-2"></i>
+                        <div class="text-lg font-bold text-white">
+                            @PlayerService.Level
+                        </div>
+                        <div class="text-amber-400/80 text-sm">Level</div>
+                    </div>
+                    <!-- Damage Stat -->
+                    <div class="bg-black/20 p-3 rounded-lg text-center border border-amber-600/30">
+                        <i class="fas fa-bolt text-amber-400 text-xl mb-2"></i>
+                        <div class="text-lg font-bold text-white">
+                            @PlayerService.TotalDamage
+                        </div>
+                        <div class="text-amber-400/80 text-sm">Damage</div>
+                    </div>
+                    <!-- Gold Stat -->
+                    <div class="bg-black/20 p-3 rounded-lg text-center border border-amber-600/30">
+                        <i class="fas fa-coins text-amber-400 text-xl mb-2"></i>
+                        <div class="text-lg font-bold text-white">
+                            @PlayerService.Gold
+                        </div>
+                        <div class="text-amber-400/80 text-sm">Gold</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Equipment section displayed below stats -->
+            <PlayerEquipment />
+
+        </div>
+    </div>
+</div>
+
+
+@code {
+
+    private double progressWidth => 100 * PlayerService.Experience / PlayerService.MaxExperience;
+    protected override void OnInitialized()
+    {
+        PlayerService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        PlayerService.OnChange -= StateHasChanged;
+    }
+}
