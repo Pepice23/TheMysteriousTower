@@ -24,6 +24,7 @@ public static class Startup
         //services.AddSingleton<WeatherForecastService>();
         services.AddSingleton<IGameService, GameService>();
         services.AddSingleton<IPlayerService, PlayerService>();
+        services.AddSingleton<IEnemyService, EnemyService>();
 
 #if DEBUG
         services.AddBlazorWebViewDeveloperTools();
