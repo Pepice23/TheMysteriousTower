@@ -23,6 +23,7 @@ public static class Startup
         // How to add a singleton service:
         //services.AddSingleton<WeatherForecastService>();
         services.AddSingleton<IGameService, GameService>();
+        services.AddSingleton<IPlayerService, PlayerService>();
 
 #if DEBUG
         services.AddBlazorWebViewDeveloperTools();
