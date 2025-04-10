@@ -12,7 +12,7 @@
             <div class="md:col-span-1">
                 <div
                     class="border-3 border-amber-700/50 rounded-lg overflow-hidden shadow-[0_0_20px_rgba(166,124,0,0.3)]">
-                    <img src="/images/player/andaric.png" alt="Hero" class="w-full h-auto rounded-lg" />
+                    <img src="/images/player/andaric.png" alt="Hero" class="w-full h-auto rounded-lg"/>
                 </div>
             </div>
 
@@ -26,7 +26,7 @@
                 <!-- XP Bar -->
                 <div class="relative h-6 bg-black/30 rounded-full overflow-hidden mb-4">
                     <div class="absolute h-full bg-gradient-to-r from-green-600 to-green-400"
-                        style="width: @progressWidth%"></div>
+                         style="width: @ProgressWidth%;"></div>
                     @if (PlayerService.Level < 100)
                     {
                         <div class="absolute inset-0 flex items-center justify-center text-white text-sm">
@@ -70,7 +70,7 @@
             </div>
 
             <!-- Equipment section displayed below stats -->
-            <PlayerEquipment />
+            <PlayerEquipment/>
 
         </div>
     </div>
@@ -79,7 +79,8 @@
 
 @code {
 
-    private double progressWidth => 100 * PlayerService.Experience / PlayerService.MaxExperience;
+    private double ProgressWidth => 100 * (double)PlayerService.Experience / PlayerService.MaxExperience;
+
     protected override void OnInitialized()
     {
         PlayerService.OnChange += StateHasChanged;
@@ -89,4 +90,5 @@
     {
         PlayerService.OnChange -= StateHasChanged;
     }
+
 }

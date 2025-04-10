@@ -13,7 +13,7 @@
             <div class="md:col-span-1">
                 <div
                     class="border-3 border-amber-700/50 rounded-lg overflow-hidden shadow-[0_0_20px_rgba(166,124,0,0.3)]">
-                    <img src=@EnemyService.EnemyImage alt="Enemy" class="w-full h-auto rounded-lg" />
+                    <img src="@EnemyService.EnemyImage" alt="Enemy" class="w-full h-auto rounded-lg"/>
                 </div>
             </div>
 
@@ -37,8 +37,9 @@
                             class="text-amber-400 text-lg uppercase tracking-[2px] font-medium drop-shadow-[0_0_10px_rgba(251,191,36,0.3)] mb-2 font-cinzel">HP</span>
                     </div>
                     <div class="h-[25px] bg-black/30 border-2 border-amber-700/50 rounded-2xl overflow-hidden relative">
-                        <div class="h-full bg-gradient-to-r from-red-500 to-red-400 rounded-md shadow-[0_0_10px_rgba(251,191,36,0.3)] transition-[width] duration-300 ease-in-out"
-                            style="width: {hpWidth}%">
+                        <div
+                            class="h-full bg-gradient-to-r from-red-500 to-red-400 rounded-md shadow-[0_0_10px_rgba(251,191,36,0.3)] transition-[width] duration-300 ease-in-out"
+                            style="width: @HpWidth%;">
                             <span
                                 class="absolute inset-0 flex items-center justify-center text-white font-bold drop-shadow-[1px_1px_2px_rgba(0,0,0,0.5)]">
                                 @EnemyService.HP / @EnemyService.MaxHP HP
@@ -69,7 +70,8 @@
 
 @code {
 
-    private double hpWidth => 100 * EnemyService.HP / EnemyService.MaxHP;
+    private double HpWidth => 100 * (double)EnemyService.HP / EnemyService.MaxHP;
+
     protected override void OnInitialized()
     {
         EnemyService.OnChange += StateHasChanged;
@@ -81,4 +83,5 @@
         EnemyService.OnChange -= StateHasChanged;
         GameService.OnChange -= StateHasChanged;
     }
+
 }

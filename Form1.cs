@@ -7,7 +7,6 @@ public partial class Form1 : Form
     public Form1()
     {
         InitializeComponent();
-        Text = "The Mysterious Tower";
         Width = 1280;
         Height = 720;
         StartPosition = FormStartPosition.CenterScreen;
@@ -41,7 +40,6 @@ public partial class Form1 : Form
             });
 
             Application.Exit();
-            return;
         }
     }
 }
