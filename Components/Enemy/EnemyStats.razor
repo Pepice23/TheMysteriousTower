@@ -1,5 +1,6 @@
 @inject IEnemyService EnemyService
 @inject IGameService GameService
+@using System.Globalization
 @implements IDisposable
 
 <!-- Main container with semi-transparent dark background and blur effect for depth -->
@@ -39,10 +40,10 @@
                     <div class="h-[25px] bg-black/30 border-2 border-amber-700/50 rounded-2xl overflow-hidden relative">
                         <div
                             class="h-full bg-gradient-to-r from-red-500 to-red-400 rounded-md shadow-[0_0_10px_rgba(251,191,36,0.3)] transition-[width] duration-300 ease-in-out"
-                            style="width: @HpWidth%;">
+                            style="width: @HpWidth.ToString(CultureInfo.InvariantCulture)%;">
                             <span
                                 class="absolute inset-0 flex items-center justify-center text-white font-bold drop-shadow-[1px_1px_2px_rgba(0,0,0,0.5)]">
-                                @EnemyService.HP / @EnemyService.MaxHP HP
+                                @NumberUtility.FormatNumber(EnemyService.HP) / @NumberUtility.FormatNumber(EnemyService.MaxHP) HP
                             </span>
                         </div>
                     </div>
