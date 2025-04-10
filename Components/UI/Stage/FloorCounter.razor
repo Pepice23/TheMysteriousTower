@@ -25,13 +25,14 @@
 
         <!-- Decorative floor label with gradient background -->
         <div class="bg-gradient-to-r from-amber-700 to-amber-500 rounded-full py-1 px-4">
-          <span class="text-sm uppercase tracking-[3px] text-amber-100 font-semibold">Floor</span </div>
-        </div>
+          <span class="text-sm uppercase tracking-[3px] text-amber-100 font-semibold">Floor</span></div>
       </div>
     </div>
   </div>
+</div>
 
 @code {
+
   protected override void OnInitialized()
   {
     GameService.OnChange += StateHasChanged;
@@ -41,4 +42,5 @@
   {
     GameService.OnChange -= StateHasChanged;
   }
-  }
+
+}
